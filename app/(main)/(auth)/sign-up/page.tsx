@@ -5,7 +5,7 @@ const SignUp = () => {
     <div className="flex w-full flex-col gap-6">
       <div className="flex flex-col items-center">
         <h2 className=" font-inter tracking-wide">
-          Welcome to <b className="font-ubuntu text-2xl">Doctris</b>
+          Welcome to <b className="font-ubuntu text-2xl">CareSync</b>
         </h2>
         <span className="text-muted-foreground tracking-wide text-base">
           Please create your account

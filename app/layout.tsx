@@ -11,7 +11,7 @@ const ubuntu = Ubuntu_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Doctris",
+  title: "CareSync",
   description:
     "This is a doctor appointment and get best e-medical service in Bangladesh",
 };

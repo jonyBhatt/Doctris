@@ -7,7 +7,7 @@ const SignIn = () => {
       <div className="flex flex-col w-full items-center gap-4">
         <div className="flex items-center gap-1">
           <Image src={"/assets/logo.png"} alt="logo" width={50} height={50} />
-          <h2 className="font-bold font-ubuntu text-4xl">Doctris</h2>
+          <h2 className="font-bold font-ubuntu text-4xl">CareSync</h2>
         </div>
         <div className="p-4 w-1/3 shadow-md rounded  bg-white border border-primary-foreground">
           <h2 className="font-semibold font-inter text-xl tracking-wide text-center">

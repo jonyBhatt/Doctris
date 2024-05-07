@@ -35,7 +35,7 @@ export const Navbar = () => {
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2">
             <Image src="/assets/logo.png" alt="logo" width={30} height={30} />
-            <span className="font-ubuntu text-2xl font-bold">Doctris</span>
+            <span className="font-ubuntu text-2xl font-bold">CareSync</span>
           </Link>
           <ul className="hidden lg:flex items-center space-x-8">
             <li>
@@ -91,7 +91,7 @@ export const Navbar = () => {
                     width={30}
                     height={30}
                   />
-                  <h2 className="font-ubuntu font-bold text-4xl">Doctris</h2>
+                  <h2 className="font-ubuntu font-bold text-4xl">CareSync</h2>
                 </div>
               </SheetHeader>
               <div className="flex flex-col gap-6 items-start w-full mt-10 px-8">
