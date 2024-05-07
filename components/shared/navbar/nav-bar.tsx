@@ -33,10 +33,10 @@ export const Navbar = () => {
     >
       <div className="container mx-auto px-8 py-5 flex justify-between items-center">
         <div className="flex items-center gap-8">
-          <a href="#" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Image src="/assets/logo.png" alt="logo" width={30} height={30} />
             <span className="font-ubuntu text-2xl font-bold">Doctris</span>
-          </a>
+          </Link>
           <ul className="hidden lg:flex items-center space-x-8">
             <li>
               <a href="#" className="text-sm font-inter font-medium ">
@@ -61,12 +61,16 @@ export const Navbar = () => {
           </ul>
         </div>
         <div className="hidden lg:flex justify-center items-center gap-4">
-          <Button variant={"ghost"} className="rounded" size={"lg"}>
-            Login
-          </Button>
-          <Button className="rounded" size={"lg"}>
-            Sign Up
-          </Button>
+          <Link href={"/sign-in"}>
+            <Button variant={"ghost"} className="rounded" size={"lg"}>
+              Login
+            </Button>
+          </Link>
+          <Link href={"/sign-up"}>
+            <Button className="rounded" size={"lg"}>
+              Sign Up
+            </Button>
+          </Link>
         </div>
         {/** Mobile */}
         <div className="lg:hidden md:flex">
@@ -104,12 +108,20 @@ export const Navbar = () => {
                   About
                 </Link>
                 <div className="mt-8 w-1/2 flex flex-col gap-4">
-                  <Button size={"lg"} className="w-full">
-                    Login
-                  </Button>
-                  <Button size={"lg"} variant={"secondary"} className="w-full">
-                    Sign Up
-                  </Button>
+                  <Link href={"/sign-in"}>
+                    <Button size={"lg"} className="w-full">
+                      Login
+                    </Button>
+                  </Link>
+                  <Link href="/sign-up">
+                    <Button
+                      size={"lg"}
+                      variant={"secondary"}
+                      className="w-full"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </SheetContent>
