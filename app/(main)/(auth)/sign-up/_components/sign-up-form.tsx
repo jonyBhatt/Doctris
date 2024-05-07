@@ -41,6 +41,11 @@ export default function SignUpForm() {
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       firstname: "",
+      lastname:"",
+      confirmpassword:"",
+      password:"",
+      email:"",
+      role:USERROLE[1]
     },
   });
 

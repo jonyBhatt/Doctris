@@ -13,7 +13,17 @@ export const enum UserType {
   Receptionist = "Receptionist",
 }
 
-export const USERROLE = ["Doctor","Patient","Nurse","Radiologist", "Pharmacist","Finance Officer", "Laboratory", "Technician", "Receptionist",] as const
+export const USERROLE = [
+  "Doctor",
+  "Patient",
+  "Nurse",
+  "Radiologist",
+  "Pharmacist",
+  "Finance Officer",
+  "Laboratory",
+  "Technician",
+  "Receptionist",
+] as const;
 
 export const signUpSchema = z
   .object({
@@ -28,9 +38,14 @@ export const signUpSchema = z
     }),
     password: z.string(),
     confirmpassword: z.string(),
-    role:  z.enum(USERROLE).default("Patient")
+    role: z.enum(USERROLE).default("Patient"),
   })
   .refine((data) => data.password === data.confirmpassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"], // path of error
   });
+
+export const signInSchema = z.object({
+  email: z.string().email({ message: "Please provide valid email!" }),
+  password: z.string(),
+});

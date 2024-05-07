@@ -57,3 +57,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.loginpage {
+  background: url("/assets/bg-lines-one.a854c4393c4e71c4ee3a.png");
+  background-position: center;
+  min-height: 100dvh;
+  background-color: #f8f9fa;
+  background-size: cover;
+}
