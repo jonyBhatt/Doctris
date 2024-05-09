@@ -26,9 +26,9 @@ export const Header = () => {
             </span>
           </div>
         </div>
-        <div className="bg-primary-foreground px-4 py-6 mt-28 w-full md:max-w-4xl mx-auto md:-mt-24 rounded">
-          <div className="flex justify-between flex-col gap-5 md:flex-row items-center">
-            <div className="flex flex-col gap-4">
+        <div className=" px-4 py-6 mt-28 w-full md:max-w-4xl mx-auto md:-mt-24 rounded">
+          <div className="flex justify-between flex-col gap-5 md:gap-0 md:flex-row items-center">
+            <div className="flex flex-col gap-4 bg-[#F8F9FA] p-4">
               <Image src="/assets/logo.png" alt="logo" width={30} height={30} />
               <h2 className="font-medium font-inter text-lg">
                 Emergency Cases
@@ -41,7 +41,7 @@ export const Header = () => {
                 Read More <ArrowRightIcon className="w-4 h-4" />
               </Link>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 bg-[#FFFFFF] p-4">
               <Image
                 src="/assets/timeline.svg"
                 alt="logo"
@@ -59,7 +59,7 @@ export const Header = () => {
                 Read More <ArrowRightIcon className="w-4 h-4" />
               </Link>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 bg-[#F8F9FA] p-4">
               <Image
                 src="/assets/opening.svg"
                 alt="logo"
