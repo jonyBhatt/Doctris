@@ -5,7 +5,7 @@ function MainLayout({ children }: { children: ReactNode }) {
   return (
     <section>
       <Navbar />
-      <main className="mt-20 container mx-auto">{children}</main>
+      <main className="">{children}</main>
     </section>
   );
 }

@@ -1,8 +1,10 @@
+import { Header } from "@/components/shared/Header/header";
+
 export default function Home() {
   return (
     <main className="relative">
-      {/* <p>Header</p>
-      <p>Footer</p> */}
+      <Header />
+      {/* <p>Footer</p> */}
     </main>
   );
 }

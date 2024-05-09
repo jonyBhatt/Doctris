@@ -65,3 +65,35 @@
   background-color: #f8f9fa;
   background-size: cover;
 }
+/* .header {
+  background: linear-gradient(
+      0deg,
+      rgba(71, 67, 178, 0.442),
+      rgba(8, 76, 149, 0.577)
+    ),
+    url("/assets/bgimage.jpg");
+  background-position: 50%;
+  background-size: cover;
+  background-color: #3c4858b3;
+  background-repeat: no-repeat;
+  min-height: 100dvh;
+} */
+.header {
+  background: url("/assets/bgimage.jpg");
+  /* display: table; */
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  padding: 260px 0;
+  height: 100vh;
+}
+.bg-overlay {
+  background-color: #3c4858b3;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  position: absolute;
+}
