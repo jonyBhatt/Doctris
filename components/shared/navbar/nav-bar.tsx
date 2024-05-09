@@ -28,7 +28,7 @@ export const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 ${
-        isScrolled ? "bg-muted" : "bg-transparent"
+        isScrolled ? "bg-muted" : "bg-transparent text-white"
       } `}
     >
       <div className="container mx-auto px-8 py-5 flex justify-between items-center">
