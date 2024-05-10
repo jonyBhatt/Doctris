@@ -2,7 +2,7 @@ import SignUpForm from "./_components/sign-up-form";
 
 const SignUp = () => {
   return (
-    <div className="flex w-full flex-col gap-6">
+    <div className="flex w-full flex-col gap-6 my-24">
       <div className="flex flex-col items-center">
         <h2 className=" font-inter tracking-wide">
           Welcome to <b className="font-ubuntu text-2xl">CareSync</b>
