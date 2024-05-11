@@ -1,7 +1,9 @@
+import { auth } from "@/auth";
 import { Navbar } from "@/components/shared/navbar/nav-bar";
+import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
-function MainLayout({ children }: { children: ReactNode }) {
+async function MainLayout({ children }: { children: ReactNode }) {
   return (
     <section>
       <Navbar />

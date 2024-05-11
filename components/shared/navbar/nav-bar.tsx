@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { SignOutButton } from "./signout-button";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -28,7 +29,7 @@ export const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 ${
-        isScrolled ? "bg-muted" : "bg-transparent text-white"
+        isScrolled ? "bg-muted" : "bg-transparent text-[#EEE0FF]"
       } `}
     >
       <div className="container mx-auto px-8 py-5 flex justify-between items-center">
@@ -60,7 +61,8 @@ export const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="hidden lg:flex justify-center items-center gap-4">
+        <SignOutButton />
+        {/* <div className="hidden lg:flex justify-center items-center gap-4">
           <Link href={"/sign-in"}>
             <Button variant={"ghost"} className="rounded" size={"lg"}>
               Login
@@ -71,7 +73,7 @@ export const Navbar = () => {
               Sign Up
             </Button>
           </Link>
-        </div>
+        </div> */}
         {/** Mobile */}
         <div className="lg:hidden md:flex">
           <Sheet>

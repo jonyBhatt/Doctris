@@ -23,6 +23,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { signUpSchema, USERROLE } from "@/utils/schema";
 import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 import Image from "next/image";
+import { showToast } from "@/components/ui/show-toast";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface Step {
   id: string;
@@ -36,22 +39,36 @@ const steps: Step[] = [
 ];
 
 export default function SignUpForm() {
+  const router = useRouter();
   const [currentSteps, setCurrentSteps] = useState(1);
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       firstname: "",
-      lastname:"",
-      confirmpassword:"",
-      password:"",
-      email:"",
-      role:USERROLE[1]
+      lastname: "",
+      confirmpassword: "",
+      password: "",
+      email: "",
+      role: USERROLE[1],
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof signUpSchema>) {
+  async function onSubmit(values: z.infer<typeof signUpSchema>) {
     console.log(values);
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        body: JSON.stringify(values),
+      });
+      if (res.ok) {
+        toast.success("User Created");
+        router.push("/sign-in");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
   }
 
   // Handle Previous
@@ -291,31 +308,6 @@ export default function SignUpForm() {
             </div>
           )}
 
-          {/** Previous and next Button */}
-          <div
-            className={`my-4 flex justify-between items-center ${
-              currentSteps === 3 ? "hidden" : ""
-            } `}
-          >
-            <Button
-              size="icon"
-              className="rounded-full hover:bg-inherit"
-              variant="outline"
-              disabled={currentSteps === 1}
-              onClick={handlePrevious}
-            >
-              <ArrowLeftCircle className="w-6 h-6 hover:text-primary transition-colors duration-100" />
-            </Button>
-            <Button
-              size="icon"
-              className="rounded-full hover:bg-inherit"
-              variant="outline"
-              onClick={handleNext}
-            >
-              <ArrowRightCircle className="w-6 h-6 hover:text-primary transition-colors duration-100" />
-            </Button>
-          </div>
-
           {currentSteps === 3 && (
             <div className="py-8">
               <Button type="submit" size="lg" className="w-full">
@@ -325,6 +317,30 @@ export default function SignUpForm() {
           )}
         </form>
       </Form>
+      {/** Previous and next Button */}
+      <div
+        className={`my-4 flex justify-between items-center w-full ${
+          currentSteps === 3 ? "hidden" : ""
+        } `}
+      >
+        <Button
+          size="icon"
+          className="rounded-full hover:bg-inherit"
+          variant="outline"
+          disabled={currentSteps === 1}
+          onClick={handlePrevious}
+        >
+          <ArrowLeftCircle className="w-6 h-6 hover:text-primary transition-colors duration-100" />
+        </Button>
+        <Button
+          size="icon"
+          className="rounded-full hover:bg-inherit"
+          variant="outline"
+          onClick={handleNext}
+        >
+          <ArrowRightCircle className="w-6 h-6 hover:text-primary transition-colors duration-100" />
+        </Button>
+      </div>
     </div>
   );
 }
