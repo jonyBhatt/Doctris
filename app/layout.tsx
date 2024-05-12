@@ -3,7 +3,7 @@ import { Inter, Ubuntu_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { auth } from "@/auth";
-import {SessionProvider} from 'next-auth/react'
+import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -24,7 +24,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session =  await auth()
+  const session = await auth();
   return (
     <html lang="en">
       <body
@@ -34,10 +34,7 @@ export default async function RootLayout({
           "min-h-screen bg-background font-inter antialiased"
         )}
       >
-        <SessionProvider session={session}>
-
-        {children}
-        </SessionProvider>
+        <SessionProvider session={session}>{children}</SessionProvider>
         <Toaster />
       </body>
     </html>

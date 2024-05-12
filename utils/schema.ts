@@ -65,3 +65,7 @@ export const signInSchema = z.object({
     .min(4, "Password must be more than 4 characters")
     .max(32, "Password must be less than 32 characters"),
 });
+
+export const medRecordSchema = z.object({
+  file: z.string(),
+});
