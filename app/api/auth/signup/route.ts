@@ -5,8 +5,9 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { firstname, lastname, email, password, role } = body;
 
-  if (!firstname || !lastname || !email || password)
+  if (!firstname || !lastname || !email || password) {
     return Response.json({ messageL: "Invalid fields" }, { status: 403 });
+  }
 
   const genSalt = await bcrypt.genSalt(10);
   const hasPass = await bcrypt.hash(password, genSalt);
