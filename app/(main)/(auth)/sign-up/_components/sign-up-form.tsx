@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -25,6 +25,7 @@ import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { register } from "@/lib/action/auth-action";
 
 interface Step {
   id: string;
@@ -38,6 +39,7 @@ const steps: Step[] = [
 ];
 
 export default function SignUpForm() {
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const [currentSteps, setCurrentSteps] = useState(1);
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -55,18 +57,27 @@ export default function SignUpForm() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     console.log(values);
+    // try {
+    //   const res = await fetch("/api/auth/signup", {
+    //     method: "POST",
+    //     body: JSON.stringify(values),
+    //   });
+    //   if (res.ok) {
+    //     toast.success("User Created");
+    //     router.push("/sign-in");
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   toast.error("Something went wrong");
+    // }
     try {
-      const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        body: JSON.stringify(values),
+      startTransition(() => {
+        register(values);
       });
-      if (res.ok) {
-        toast.success("User Created");
-        router.push("/sign-in");
-      }
+      router.push("/sign-in");
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Something Went wrong!");
     }
   }
 
