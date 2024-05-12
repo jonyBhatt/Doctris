@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Ubuntu_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { auth } from "@/auth";
+import {SessionProvider} from 'next-auth/react'
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -17,11 +19,12 @@ export const metadata: Metadata = {
     "This is a doctor appointment and get best e-medical service in Bangladesh",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session =  await auth()
   return (
     <html lang="en">
       <body
@@ -31,7 +34,10 @@ export default function RootLayout({
           "min-h-screen bg-background font-inter antialiased"
         )}
       >
+        <SessionProvider session={session}>
+
         {children}
+        </SessionProvider>
         <Toaster />
       </body>
     </html>

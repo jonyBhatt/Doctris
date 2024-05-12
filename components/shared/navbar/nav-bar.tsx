@@ -9,11 +9,23 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { SignOutButton } from "./signout-button";
-
+import { useSession, signOut } from "next-auth/react";
+import { useCurrentUserSession } from "@/hooks/use-current-user";
 export const Navbar = () => {
+  const user = useCurrentUserSession();
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -25,6 +37,10 @@ export const Navbar = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const SignOut = () => {
+    signOut();
+  };
 
   return (
     <nav
@@ -61,19 +77,41 @@ export const Navbar = () => {
             </li>
           </ul>
         </div>
-        <SignOutButton />
-        {/* <div className="hidden lg:flex justify-center items-center gap-4">
-          <Link href={"/sign-in"}>
-            <Button variant={"ghost"} className="rounded" size={"lg"}>
-              Login
-            </Button>
-          </Link>
-          <Link href={"/sign-up"}>
-            <Button className="rounded" size={"lg"}>
-              Sign Up
-            </Button>
-          </Link>
-        </div> */}
+        {user && (
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar>
+                <AvatarImage src={user.image as string} alt={user.firstname} />
+                <AvatarFallback
+                  className={`${
+                    isScrolled
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted bg-muted-foreground"
+                  }`}
+                >
+                  {user.firstname.slice(0, 1)}
+                </AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Link href={"/profile"}>Profile</Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Link href={"/dashboard"}>Dashboard</Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Button variant="destructive" size="lg" onClick={SignOut}>
+                  Sign Out
+                </Button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+
         {/** Mobile */}
         <div className="lg:hidden md:flex">
           <Sheet>

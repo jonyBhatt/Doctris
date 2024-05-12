@@ -33,11 +33,20 @@ export const signUpSchema = z
     lastname: z.string().min(2, {
       message: "Last name required!",
     }),
-    email: z.string().email({
-      message: "Must be a valid email",
-    }),
-    password: z.string(),
-    confirmpassword: z.string(),
+    email: z
+      .string({ required_error: "Email is required" })
+      .min(1, "Email is required")
+      .email("Invalid email"),
+    password: z
+      .string({ required_error: "Password is required" })
+      .min(1, "Password is required")
+      .min(4, "Password must be more than 4 characters")
+      .max(32, "Password must be less than 32 characters"),
+    confirmpassword: z
+      .string({ required_error: "Password is required" })
+      .min(1, "Password is required")
+      .min(4, "Password must be more than 4 characters")
+      .max(32, "Password must be less than 32 characters"),
     role: z.enum(USERROLE).default("Patient"),
   })
   .refine((data) => data.password === data.confirmpassword, {
@@ -46,6 +55,13 @@ export const signUpSchema = z
   });
 
 export const signInSchema = z.object({
-  email: z.string().email({ message: "Please provide valid email!" }),
-  password: z.string(),
+  email: z
+    .string({ required_error: "Email is required" })
+    .min(1, "Email is required")
+    .email("Invalid email"),
+  password: z
+    .string({ required_error: "Password is required" })
+    .min(1, "Password is required")
+    .min(4, "Password must be more than 4 characters")
+    .max(32, "Password must be less than 32 characters"),
 });

@@ -7,14 +7,28 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum UserRole {
+  Doctor
+  Patient
+  Nurse
+  Radiologist
+  Pharmacist
+  FinanceOfficer
+  Laboratory
+  Technician
+  Receptionist
+}
+
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  firstname String?
+  lastname  String?
+  email     String    @unique
+  password  String?
+  role      UserRole  @default(Patient)
+  image     String?
+  accounts  Account[]
+  sessions  Session[]
   // Optional for WebAuthn support
 
   createdAt DateTime @default(now())
