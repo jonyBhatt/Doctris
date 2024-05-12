@@ -2,7 +2,8 @@ import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./lib/prisma";
-import bcrypt from "bcryptjs";
+import bcrypt from 'bcryptjs'
+import argon2 from "argon2";
 import { getUserById } from "./lib/action/user-action";
 import { User, UserRole } from "@prisma/client";
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -35,6 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           credential.password as string,
           user.password!
         );
+        // const matchPassword = await argon2.verify(credential.password as string, user.password as string)
 
         if (!matchPassword) {
           throw new CredentialsSignin({
